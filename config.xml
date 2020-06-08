@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<widget xmlns   = "http://www.w3.org/ns/widgets"
+    xmlns:cdv   = "http://cordova.apache.org/ns/1.0"
+    id          = "com.programoteq.pphonegap"
+    versionCode = "14"
+    version     = "0.1.4" >
+
+<!-- versionCode is optional and Android only -->
+
+  <name>pPhoneGap</name>
+
+  <description>
+      A sample Progressive Web App created with Adobe PhoneGap for iOS and Android. 
+	  Powered by JavaScript, HTML5, CSS3 and jQuery Mobile.
+  </description>
+
+  <author href="https://github.com/programoteq" email="programoteq@gmail.com">
+      programoteq
+  </author>
+
+<!-- Configure an application's icon.
+Define a single default icon which will be used for all platforms. -->  
+  <icon src="www/img/icon.png" />
+
+  <plugin name="cordova-plugin-whitelist" spec="1" />
+  
+      <!--
+        Define access to external domains.Defines the set of external domains the app is allowed to communicate with. 
+
+        <access />            - a blank access tag denies access to all external resources.
+        <access origin="*" /> - a wildcard access tag allows access to all external resource.
+
+        Otherwise, you can specify specific domains:
+		
+		<access origin="http://google.com"></access>
+    -->
+  <access origin="*" />
+  
+<!-- Controls which URLs the WebView itself can be navigated to. 
+Applies to top-level navigations only. -->
+<allow-navigation href="http://*/*" />
+<allow-navigation href="https://*/*" />
+<allow-navigation href="data:*" />  
+  
+  
+<!-- Controls which URLs the app is allowed to ask the system to open. 
+By default, no external URLs are allowed. -->
+  <allow-intent href="http://*/*" />
+  <allow-intent href="https://*/*" />
+    <allow-intent href="tel:*" />
+    <allow-intent href="sms:*" />
+    <allow-intent href="mailto:*" />
+
+</widget>

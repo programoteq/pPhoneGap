@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>PhoneGap Practice</title> <!-- Net necessary for mobile -->
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<!-- the width will be set to the pixel width of the device screen -->
+	<link rel="stylesheet" href="css/jquery.mobile-1.4.5.css">
+	<script src="js/jquery.js"></script>
+	<script type="text/javascript">
+		$(document).on('mobileinit', function(){
+			$.mobile.defaultPageTransition = 'slide';
+		});
+	</script>		
+	<script src="js/jquery.mobile-1.4.5.js"></script>
+	<script>
+		$( document ).on( "pagecreate", function() {
+			$( "#theme-selector input" ).on( "change", function( event ) {
+				var themeClass = $( "#theme-selector input:checked" ).attr( "id" );
+
+				$( "#home" ).removeClass( "ui-page-theme-a ui-page-theme-b" ).addClass( "ui-page-theme-" + themeClass );
+				$( "#info" ).removeClass( "ui-page-theme-a ui-page-theme-b" ).addClass( "ui-page-theme-" + themeClass );
+				$( "#gallery" ).removeClass( "ui-page-theme-a ui-page-theme-b" ).addClass( "ui-page-theme-" + themeClass );
+				$( "#subgallery" ).removeClass( "ui-page-theme-a ui-page-theme-b" ).addClass( "ui-page-theme-" + themeClass );
+				$( "#contact" ).removeClass( "ui-page-theme-a ui-page-theme-b" ).addClass( "ui-page-theme-" + themeClass );
+				$( ".theme" ).text( themeClass );
+			});
+			$( "#opt-shadow input" ).on( "change", function( event ) {
+				if ( $( "#on" ).prop( "checked" ) ) {
+					$( "#home" ).removeClass( "noshadow" );
+					$( "#info" ).removeClass( "noshadow" );
+					$( "#gallery" ).removeClass( "noshadow" );
+					$( "#subgallery" ).removeClass( "noshadow" );
+					$( "#contact" ).removeClass( "noshadow" );
+				} else if ( $( "#off" ).prop( "checked" ) ) {
+					$( "#home" ).addClass( "noshadow" );
+					$( "#info" ).addClass( "noshadow" );
+					$( "#gallery" ).addClass( "noshadow" );
+					$( "#subgallery" ).addClass( "noshadow" );
+					$( "#contact" ).addClass( "noshadow" );
+				}
+			});
+			$( "#opt-navbars input" ).on( "change", function( event ) {
+				if ( $( "#show" ).prop( "checked" ) ) {
+					$( "#home .ui-navbar" ).show();
+					$( "#home .ui-footer h4" ).hide();
+					$( "#info .ui-navbar" ).show();
+					$( "#info .ui-footer h4" ).hide();
+					$( "#gallery .ui-navbar" ).show();
+					$( "#gallery .ui-footer h4" ).hide();
+					$( "#subgallery .ui-navbar" ).show();
+					$( "#subgallery .ui-footer h4" ).hide();
+					$( "#contact .ui-navbar" ).show();
+					$( "#contact .ui-footer h4" ).hide();
+				} else if ( $( "#hide" ).prop( "checked" ) ) {
+					$( "#home .ui-navbar" ).hide();
+					$( "#home .ui-footer h4" ).show();
+					$( "#info .ui-navbar" ).hide();;
+					$( "#info .ui-footer h4" ).show();
+					$( "#gallery .ui-navbar" ).hide();
+					$( "#gallery .ui-footer h4" ).show();
+					$( "#subgallery .ui-navbar" ).hide();
+					$( "#subgallery .ui-footer h4" ).show();
+					$( "#contact .ui-navbar" ).hide();
+					$( "#contact .ui-footer h4" ).show();
+				}
+			});
+		});
+	</script>
+	<style>
+		.noshadow * {
+			-webkit-box-shadow: none !important;
+			-moz-box-shadow: none !important;
+			box-shadow: none !important;
+		}
+		form.ui-mini .ui-field-contain fieldset.ui-controlgroup legend small {
+			color: #666;
+		}
+		.ui-icon-linkedin:after {
+		    background-image: url("img/linkedin_32.png");
+		    background-size: 18px 18px;
+		}
+		table {
+		  font-family: arial, sans-serif;
+		  border-collapse: collapse;
+		  width: 100%;
+		}
+
+		td, th {
+		  border: 1px solid #a3a3a3;
+		  text-align: left;
+		  padding: 4px;
+		}
+
+	</style>
+</head>   
+
+
+
+
+<body>
+
+<!-- Start of Menu page -->
+<div data-role="page" id="home">
+
+	<div data-role="header">
+		<h1>Home</h1>
+		<a href="#panel-reveal" class="ui-btn ui-corner-all ui-shadow ui-mini ui-btn-icon-notext ui-icon-gear"></a>
+	</div><!-- /header -->
+
+	<div role="main" class="ui-content">
+		<p></p>
+		<img class="popphoto ui-corner-all ui-shadow" src="img/banner.jpg" alt="banner1_X" style="width:100%">
+		<h2 style="text-align:center">Mateusz Ostrowski</h2>
+		<a href="#info" class="ui-btn ui-shadow ui-corner-all ui-mini">Summary</a>
+		<a href="#gallery" class="ui-btn ui-shadow ui-corner-all ui-mini">Sample Programs</a>
+		<a href="#contact" class="ui-btn ui-shadow ui-corner-all ui-mini">Contact Details</a>
+	</div><!-- /content -->
+
+	<div data-role="footer" data-position="fixed">
+		<div data-role="navbar">
+			<ul>
+				<li><a href="#home" data-icon="home" class="ui-btn-active ui-state-persist ui-nodisc-icon"></a></li>
+				<li><a href="#info" data-icon="info"></a></li>
+				<li><a href="#gallery" data-icon="grid"></a></li>
+				<li><a href="#contact" data-icon="user"></a></li>
+			</ul>
+		</div>
+		<h4 style="display:none;"><img src="img/programoteq.100.png"></h4>
+	</div><!-- /footer -->
+
+
+<!-- Start of Panel -->
+	<div data-role="panel" id="panel-reveal">
+		<h2>pPhoneGap</h2> 
+		<h4>version 0.1.4</h4>
+		<form class="ui-mini">
+			<div class="ui-field-contain" id="theme-selector">
+				<fieldset data-role="controlgroup" data-type="horizontal">
+					<legend>Theme:</legend><br>
+					<label for="a">Classic</label>
+					<input type="radio" name="theme" id="a" checked>
+					<label for="b">Dark</label>
+					<input type="radio" name="theme" id="b">
+				</fieldset>
+			</div>
+			<div class="ui-field-contain" id="opt-shadow">
+				<fieldset data-role="controlgroup" data-type="horizontal">
+					<legend>Shadow:<br></legend><br>
+					<label for="on">On</label>
+					<input type="radio" name="shadow" id="on" checked>
+					<label for="off">Off</label>
+					<input type="radio" name="shadow" id="off">
+				</fieldset>
+			</div>
+			<div class="ui-field-contain" id="opt-navbars">
+				<fieldset data-role="controlgroup" data-type="horizontal">
+					<legend>Menu:</legend><br>
+					<label for="show">Show</label>
+					<input type="radio" name="navbars" id="show" checked>
+					<label for="hide">Hide</label>
+					<input type="radio" name="navbars" id="hide">
+				</fieldset>
+			</div>
+			<br>
+			<br>
+			<br>
+			<p><small>Home screen banner by Lukas Preisach on Unsplash.</small></p>
+		</form>
+	</div><!-- /panel -->
+
+</div><!-- /page -->
+
+
+
+
+<!-- Start of Info page -->
+<div data-role="page" id="info">
+
+	<div data-role="header">
+		<a href="#home" data-direction="reverse" class="ui-btn ui-shadow ui-corner-all"><</a>
+		<h1>Summary</h1>
+	</div><!-- /header -->
+
+	<div role="main" class="ui-content">	
+		<h3>Skills</h3>
+		<table class="ui-body-d ui-shadow table-stripe ui-responsive" data-column-btn-theme="b" data-column-popup-theme="a">            
+			<tr>
+				<th>Agile management</th>
+				<td>Scrum, Kanban</td>
+			</tr>
+			<tr>
+				<th>Back-end</th>
+				<td>Python (OOP, Tkinter), SQL</td>
+			</tr>
+			<tr>
+				<th>Front-end</th>
+				<td>HTML5, CSS, Javascript, RWD</td>
+			</tr>
+			<tr>
+				<th>Mobile</th>
+				<td>jQuery Mobile, PhoneGap</td>
+		    </tr>
+			<tr>
+				<th>Issue tracking tool</th>
+				<td>Trello, Jira</td>
+			</tr>
+			<tr>
+				<th>Knowledge repository</th>
+				<td>GitHub, Google Drive</td>
+			</tr>
+			<tr>
+				<th>Version control system</th>
+				<td>GIT</td>
+			</tr>
+			<tr>
+				<th>Database</th>
+				<td>MySQL</td>
+			</tr>
+			<tr>
+				<th>Unit tests</th>
+				<td><a class="ui-btn ui-corner-all ui-icon-check ui-btn-icon-notext ui-mini">Yes</a></td>
+			</tr>
+		</table>
+		<br>
+		<h4>Certificates</h4>
+		<table class="ui-body-d ui-shadow table-stripe ui-responsive" data-column-btn-theme="b" data-column-popup-theme="a">            
+			<tr>
+				<th>Akademia Kodu</th>
+				<td>Programmer's Specialty: Python Basics 2nd Edition</td>
+			</tr>
+		</table>
+		<br>
+		<h4>Education</h4>
+		<table class="ui-body-d ui-shadow table-stripe ui-responsive" data-column-btn-theme="b" data-column-popup-theme="a">            
+			<tr>
+				<th>Bachelor of Engineering Thesis</th>
+				<td>Information Systems and Communication Services: Microsoft NetMeeting Implementation</td>
+			</tr>
+		</table>
+	</div><!-- /content -->
+
+	<div data-role="footer" data-position="fixed">
+		<div data-role="navbar">
+			<ul>
+				<li><a href="#home" data-icon="home"></a></li>
+				<li><a href="#info" data-icon="info" class="ui-btn-active ui-state-persist ui-nodisc-icon"></a></li>
+				<li><a href="#gallery" data-icon="grid"></a></li>
+				<li><a href="#contact" data-icon="user"></a></li>
+			</ul>
+		</div>
+		<h4 style="display:none;"><img src="img/programoteq.100.png"></h4>
+	</div><!-- /footer -->
+
+</div><!-- /page -->
+
+
+
+
+<!-- Start of Gallery page -->
+<div data-role="page" id="gallery">
+
+	<div data-role="header">
+		<a href="#home" data-direction="reverse" class="ui-btn ui-shadow ui-corner-all"><</a>	
+		<h1>Sample Programs</h1>
+	</div><!-- /header -->
+
+	<div role="main" class="ui-content">
+		<p>Main public repositories on GitHub.</p>
+		<a href="#pcalc" data-rel="popup" data-position-to="window" data-transition="fade"><img class="popphoto" src="img/pCalc.png" alt="GitHub pCalc" style="width:30%"></a>
+		<a href="#pphonegap" data-rel="popup" data-position-to="window" data-transition="fade"><img class="popphoto" src="img/pPhoneGap.png" alt="GitHub pPhoneGap" style="width:30%"></a>
+		<a href="#tkinter" data-rel="popup" data-position-to="window" data-transition="fade"><img class="popphoto" src="img/Tkinter.png" alt="GitHub Tkinter" style="width:30%"></a>
+		<div data-role="popup" id="pcalc" data-overlay-theme="b" data-theme="b" data-corners="false">
+		    <a href="#" data-rel="back" class="ui-btn ui-corner-all ui-shadow ui-btn-a ui-icon-delete ui-btn-icon-notext ui-btn-right">Close</a>
+		    <img class="popphoto" src="img/pCalc.png" style="max-height:512px;" alt="GitHub pCalc">
+		</div>
+		<div data-role="popup" id="pphonegap" data-overlay-theme="b" data-theme="b" data-corners="false">
+		    <a href="#" data-rel="back" class="ui-btn ui-corner-all ui-shadow ui-btn-a ui-icon-delete ui-btn-icon-notext ui-btn-right">Close</a>
+		    <img class="popphoto" src="img/pPhoneGap.png" style="max-height:512px;" alt="GitHub pPhoneGap">
+		</div>
+		<div data-role="popup" id="tkinter" data-overlay-theme="b" data-theme="b" data-corners="false">
+		    <a href="#" data-rel="back" class="ui-btn ui-corner-all ui-shadow ui-btn-a ui-icon-delete ui-btn-icon-notext ui-btn-right">Close</a>
+		    <img class="popphoto" src="img/Tkinter.png" style="max-height:512px;" alt="GitHub Tkinter">
+		</div>
+		<br>
+		<br>
+		<a href="#subgallery" class="ui-btn ui-mini ui-corner-all">Instagram</a>
+ 	</div><!-- /content -->
+
+	<div data-role="footer" data-position="fixed">
+		<div data-role="navbar">
+			<ul>
+				<li><a href="#home" data-icon="home"></a></li>
+				<li><a href="#info" data-icon="info"></a></li>
+				<li><a href="#gallery" data-icon="grid" class="ui-btn-active ui-state-persist ui-nodisc-icon"></a></li>
+				<li><a href="#contact" data-icon="user"></a></li>
+			</ul>
+		</div>
+		<h4 style="display:none;"><img src="img/programoteq.100.png"></h4>
+	</div><!-- /footer -->
+
+</div><!-- /page -->
+
+
+
+
+<!-- Start of SubGallery page -->
+<div data-role="page" id="subgallery">
+
+	<div data-role="header">
+		<a href="#gallery" data-direction="reverse" class="ui-btn ui-shadow ui-corner-all"><<</a>	
+		<h1>Instagram</h1>
+	</div><!-- /header -->
+
+	<div role="main" class="ui-content">
+		<p>Posts on the Instagram.</p>
+		<a href="#insta4" data-rel="popup" data-position-to="window" data-transition="fade"><img class="popphoto" src="img/insta4.png" alt="Instagram 4" style="width:30%"></a>
+		<a href="#insta3" data-rel="popup" data-position-to="window" data-transition="fade"><img class="popphoto" src="img/insta3.png" alt="Instagram 3" style="width:30%"></a>
+		<a href="#insta2" data-rel="popup" data-position-to="window" data-transition="fade"><img class="popphoto" src="img/insta2.png" alt="Instagram 2" style="width:30%"></a>
+		<a href="#insta1" data-rel="popup" data-position-to="window" data-transition="fade"><img class="popphoto" src="img/insta1.png" alt="Instagram 1" style="width:30%"></a>
+		<div data-role="popup" id="insta4" data-overlay-theme="b" data-theme="b" data-corners="false">
+		    <a href="#" data-rel="back" class="ui-btn ui-corner-all ui-shadow ui-btn-a ui-icon-delete ui-btn-icon-notext ui-btn-right">Close</a>
+		    <img class="popphoto" src="img/insta4.png" style="max-height:512px;" alt="Instagram 4">
+		</div> 
+		<div data-role="popup" id="insta3" data-overlay-theme="b" data-theme="b" data-corners="false">
+		    <a href="#" data-rel="back" class="ui-btn ui-corner-all ui-shadow ui-btn-a ui-icon-delete ui-btn-icon-notext ui-btn-right">Close</a>
+		    <img class="popphoto" src="img/insta3.png" style="max-height:512px;" alt="Instagram 3">
+		</div> 
+		<div data-role="popup" id="insta2" data-overlay-theme="b" data-theme="b" data-corners="false">
+		    <a href="#" data-rel="back" class="ui-btn ui-corner-all ui-shadow ui-btn-a ui-icon-delete ui-btn-icon-notext ui-btn-right">Close</a>
+		    <img class="popphoto" src="img/insta2.png" style="max-height:512px;" alt="Instagram 2">
+		</div>
+		<div data-role="popup" id="insta1" data-overlay-theme="b" data-theme="b" data-corners="false">
+		    <a href="#" data-rel="back" class="ui-btn ui-corner-all ui-shadow ui-btn-a ui-icon-delete ui-btn-icon-notext ui-btn-right">Close</a>
+		    <img class="popphoto" src="img/insta1.png" style="max-height:512px;" alt="Instagram 1">
+		</div>
+	</div><!-- /content -->
+
+	<div data-role="footer" data-position="fixed">
+		<div data-role="navbar">
+			<ul>
+				<li><a href="#home" data-icon="home"></a></li>
+				<li><a href="#info" data-icon="info"></a></li>
+				<li><a href="#gallery" data-icon="grid"></a></li>
+				<li><a href="#contact" data-icon="user"></a></li>
+			</ul>
+		</div>
+		<h4 style="display:none;"><img src="img/programoteq.100.png"></h4>
+	</div><!-- /footer -->
+
+</div><!-- /page -->
+
+
+
+
+<!-- Start of Contact page -->
+<div data-role="page" id="contact">
+
+	<div data-role="header">
+		<a href="#home" data-direction="reverse" class="ui-btn ui-shadow ui-corner-all"><</a>	
+		<h1>Contact Details</h1>
+	</div><!-- /header -->
+
+	<div role="main" class="ui-content">
+		<img class="popphoto ui-corner-all ui-shadow" src="img/zdj_mo.jpg" alt="picture" style="width:30%">
+		<p></p>
+	    <a href="https://github.com/programoteq"><img src="img/github_32.png" alt="GitHub" class="ui-btn ui-btn-inline ui-corner-all">programoteq</a><br>
+	    <a href="https://www.instagram.com/programoteq/"><img src="img/instagram_32.png" alt="Instagram" class="ui-btn ui-btn-inline ui-corner-all">programoteq</a><br>
+	    <a href="mailto:programoteq@gmail.com"><img src="img/gmail_32.png" alt="Gmail" class="ui-btn ui-btn-inline ui-corner-all">programoteq@gmail.com</a><br>
+	    <a href="https://www.linkedin.com/in/mateuszostrowski/"><img src="img/linkedin_32.png" alt="LinkedIn" class="ui-btn ui-btn-inline ui-corner-all">mateuszostrowski</a>
+ 	</div><!-- /content -->
+
+	<div data-role="footer" data-position="fixed">
+		<div data-role="navbar">
+			<ul>
+				<li><a href="#home" data-icon="home"></a></li>
+				<li><a href="#info" data-icon="info"></a></li>
+				<li><a href="#gallery" data-icon="grid"></a></li>
+				<li><a href="#contact" data-icon="user" class="ui-btn-active ui-state-persist ui-nodisc-icon"></a></li>
+			</ul>
+		</div>
+
+
+		<h4 style="display:none;"><img src="img/programoteq.100.png"></h4>
+	</div><!-- /footer -->
+
+</div><!-- /page -->
+
+</body>
+</html>
